@@ -7,6 +7,12 @@ int main(int argc, char **argv)
 	double b{0};
 	double c{0};
 	std::cin >> a >> b >> c;
+	if (a == 0) {
+		if (b != 0) {
+			std::cout << -c / b;
+		}
+		return 0;
+	}
 	double d = std::pow(b,2) - 4*a*c;
 	if (d < 0) {
 		//no solution
@@ -14,6 +20,7 @@ int main(int argc, char **argv)
 	}
 
 	double sqrtD {std::sqrt(d)};
+	std::cerr << sqrtD << std::endl;
 	double v1 = -(b + sqrtD)/(2*a);
 	double v2 = -(b - sqrtD)/(2*a);
 
