@@ -33,3 +33,10 @@
 # Codelite
 .codelite
 *.workspace
+*.mk
+*.project
+Debug/
+Makefile
+01-AplusB.txt
+compile_flags.txt
+compile_commands.json
