@@ -5,7 +5,6 @@ bool IsPalindrom ( std::string& text )
 {
     size_t lastElem = text.size() - 1;
     size_t center = text.size() / 2 ;
-    std::cerr << center;
     for ( size_t idx = 0; idx <  center ; ++idx ) {
         if ( text[idx] != text[lastElem - idx] ) {
             return false;
