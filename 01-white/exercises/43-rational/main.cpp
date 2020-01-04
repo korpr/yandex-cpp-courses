@@ -14,24 +14,28 @@ public:
             numerator = 0;
             denominator = 1;
         } else {
-            int common  = gcd ( aNumerator, aDenominator );
-            numerator = aNumerator / common;
-            denominator = aDenominator / common;
+          int common  = gcd ( aNumerator, aDenominator );
+            numerator = aNumerator / common ;
+            denominator = aDenominator / common ;
+            if ( denominator < 0 ) {
+                denominator = -denominator;
+                numerator = -numerator;
+            }
         }
     }
-    
+
     int Numerator() const
     {
         return numerator;
     }
-    
+
     int Denominator() const
     {
         return denominator;
     }
-    
-    
-    
+
+
+
 private:
     int numerator;
     int denominator;
@@ -42,7 +46,7 @@ private:
         }
         return gcd ( b, a % b );
     }
-    
+
 };
 Rational operator+ (  const Rational& lhs, const Rational& rhs )
 {
@@ -97,7 +101,7 @@ int main()
             return 1;
         }
     }
-    
+
     {
         const Rational r ( 8, 12 );
         if ( r.Numerator() != 2 || r.Denominator() != 3 ) {
@@ -105,7 +109,7 @@ int main()
             return 2;
         }
     }
-    
+
     {
         const Rational r ( 8, -12 );
         if ( r.Numerator() != -2 || r.Denominator() != 3 ) {
@@ -127,7 +131,7 @@ int main()
             return 3;
         }
     }
-    
+
     {
         const Rational r ( 4, -6 );
         if ( r.Numerator() != -2 || r.Denominator() != 3 ) {
@@ -149,7 +153,7 @@ int main()
             return 4;
         }
     }
-    
+
     {
         const Rational defaultConstructed;
         if ( defaultConstructed.Numerator() != 0 || defaultConstructed.Denominator() != 1 ) {
@@ -166,7 +170,7 @@ int main()
             return 1;
         }
     }
-    
+
     {
         Rational a ( 2, 3 );
         Rational b ( 4, 3 );
@@ -177,7 +181,7 @@ int main()
             return 2;
         }
     }
-    
+
     {
         Rational a ( 5, 7 );
         Rational b ( 2, 9 );
@@ -198,7 +202,7 @@ int main()
             return 1;
         }
     }
-    
+
     {
         Rational a ( 5, 4 );
         Rational b ( 15, 8 );
@@ -217,7 +221,7 @@ int main()
             return 1;
         }
     }
-    
+
     {
         istringstream input ( "5/7" );
         Rational r;
@@ -228,7 +232,7 @@ int main()
             return 2;
         }
     }
-    
+
     {
         istringstream input ( "5/7 10/8" );
         Rational r1, r2;
@@ -238,7 +242,7 @@ int main()
             cout << "Multiple values are read incorrectly: " << r1 << " " << r2 << endl;
             return 3;
         }
-        
+
         input >> r1;
         input >> r2;
         correct = r1 == Rational ( 5, 7 ) && r2 == Rational ( 5, 4 );
@@ -253,7 +257,7 @@ int main()
             cout << "Wrong amount of items in the set" << endl;
             return 1;
         }
-        
+
         vector<Rational> v;
         for ( auto x : rs ) {
             v.push_back ( x );
@@ -263,20 +267,20 @@ int main()
             return 2;
         }
     }
-    
+
     {
         map<Rational, int> count;
         ++count[ {1, 2}];
         ++count[ {1, 2}];
-        
+
         ++count[ {2, 3}];
-        
+
         if ( count.size() != 2 ) {
             cout << "Wrong amount of items in the map" << endl;
             return 3;
         }
     }
-    
+
     cout << "OK" << endl;
     cout << "OK" << endl;
     cout << "OK" << endl;
