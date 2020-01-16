@@ -1,8 +1,17 @@
+//
+//  collection_helper.hpp
+//  u-tests
+//
+//  Created by Sergey Gordeev on 16/01/2020.
+//  Copyright © 2020 Sergey Gordeev. All rights reserved.
+//
+#pragma once
 #include <string>
 #include <map>
 #include <set>
 #include <vector>
 #include <iostream>
+
 
 template < class K, class V >
 std::ostream& operator<< ( std::ostream& os, const std::pair<K, V>& p )
