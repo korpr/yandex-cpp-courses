@@ -14,7 +14,6 @@ void PrintVectorPart(const std::vector<int>& numbers)
     auto border = std::find_if(begin(numbers),end(numbers),[](const int& e){return e<0;});
 
     while(border != begin(numbers)){
-        ;
          std::cout << *(--border) << " ";
     }
 }
