@@ -23,14 +23,15 @@ public:
     void RunTest ( TestFunc func, const std::string& name )
     {
         {
+    
             try {
                 func();
-                std::cerr << "[  OK  ] " ;
+                std::cerr << "[  OK  ] " << name;
             } catch ( const std::exception& e ) {
                 ++failedCount;
-                std::cerr << "[ FAIL ] " << " reason: " << e.what();
+                std::cerr << "[ FAIL ] "<< name << " reason: " << e.what();
             }
-            std::cerr <<" "<< name << std::endl;
+            std::cerr << std::endl;
         }
     }
     
