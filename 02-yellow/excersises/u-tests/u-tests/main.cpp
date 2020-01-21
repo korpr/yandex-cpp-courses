@@ -22,13 +22,23 @@ void AssertTrueTest()
     AssertTrue ( false, "true != false" );
     
 }
+
+void AssertSetTest()
+{
+    std::set<int> expected = {1,2};
+    std::set<int> another = {1,2,3};
+    AssertEq ( expected, expected,"set  eq" );
+    AssertEq ( expected, another , "set not eq");
+    
+}
 int main ( int argc, char **argv )
 {
-
+    
     {
         TestRunner runner;
-        runner.RunTest ( AssertEqTest, "first test" );
-        runner.RunTest ( AssertTrueTest, "second test" );
+        runner.RunTest ( AssertEqTest, "AssertEqTest" );
+        runner.RunTest ( AssertTrueTest, "AssertTrueTest" );
+        runner.RunTest ( AssertSetTest, "AssertSetTest" );
     }
     return 0;
 }

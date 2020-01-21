@@ -10,7 +10,7 @@
 #include <map>
 #include <set>
 #include <vector>
-#include <iostream>
+#include <ostream>
 
 
 template < class K, class V >
@@ -51,7 +51,8 @@ std::ostream& operator << ( std::ostream& os, const std::set<V>& s )
         first = false;
         os << x;
     }
-    return os << "}";
+    os << "}";
+    return os;
 }
 
 template <class V>
