@@ -20,59 +20,78 @@ void TestIncognito(){
 void TestName(){
     Person p;
     p.ChangeFirstName(1910, "name-1910");
+   
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => name was changed in 1910");
+             "1900 => The name has been changed in 1910 to name-1910");
+  
     AssertEq("name-1910 with unknown last name",p.GetFullName(1910),
-             "1910 => name was changed in 1910");
+             "1910 => The name has been changed in 1910 to name-1910");
+  
     AssertEq("name-1910 with unknown last name",p.GetFullName(1911),
-             "1911 => name was changed in 1910");
+             "1911 => The name has been changed in 1910 to name-1910");
     
     p.ChangeFirstName(1910, "name-1910-v2");
+  
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => name was changed in 1910 v2");
+             "1900 => The name has been changed in 1910 to name-1910-v2");
+  
     AssertEq("name-1910-v2 with unknown last name",p.GetFullName(1910),
-             "1910 => name was changed in 1910 v2");
+             "1910 => The name has been changed in 1910 to name-1910-v2");
+   
     AssertEq("name-1910-v2 with unknown last name",p.GetFullName(1911),
-             "1911 => name was changed in 1910 v2");
+             "1911 => The name has been changed in 1910 to name-1910-v2");
     
     p.ChangeFirstName(1911, "name-1911");
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => name was changed in 1910 v2");
+             "1900 => The name has been changed in 1910 to name-1911");
+   
     AssertEq("name-1910-v2 with unknown last name",p.GetFullName(1910),
-             "1910 => name was changed in 1910 v2");
+             "1910 => The name has been changed in 1910 to name-1911");
+   
     AssertEq("name-1911 with unknown last name",p.GetFullName(1911),
-             "1911 => name was changed in 1911");
+             "1911 => The name has been changed in 1910 to name-19111");
+   
     AssertEq("name-1911 with unknown last name",p.GetFullName(1912),
-             "1912 => name was changed in 1911");
+             "1912 => The name has been changed in 1910 to name-1911");
     
 }
 void TestSurname(){
     Person p;
     p.ChangeLastName(1910, "surname-1910");
+   
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => surname was changed in 1910");
+             "1900 => The surname has been changed in 1910 to surname-1910");
+    
     AssertEq("surname-1910 with unknown first name",p.GetFullName(1910),
-             "1910 => surname was changed in 1910");
+             "1910 => The surname has been changed in 1910 to surname-1910");
+    
     AssertEq("surname-1910 with unknown first name",p.GetFullName(1911),
-             "1911 => surname was changed in 1910");
+             "1911 => The surname has been changed in 1910 to surname-1910");
     
     p.ChangeLastName(1910, "surname-1910-v2");
+   
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => surname was changed in 1910 v2");
+             "1900 => The surname has been changed in 1910 to surname-1910-v2");
+    
     AssertEq("surname-1910-v2 with unknown first name",p.GetFullName(1910),
-             "1910 => name was changed in 1910 v2");
+             "1910 => The surname has been changed in 1910 to surname-1910-v2");
+    
     AssertEq("surname-1910-v2 with unknown first name",p.GetFullName(1911),
-             "1911 => surname was changed in 1910 v2");
+             "1911 => The surname has been changed in 1910 to surname-1910-v2");
     
     p.ChangeLastName(1911, "surname-1911");
+    
     AssertEq("Incognito",p.GetFullName(1900),
-             "1900 => surname was changed in 1910 v2");
+             "1900 => The surname has been changed in 1910 to surname-1911");
+    
     AssertEq("surname-1910-v2 with unknown first name",p.GetFullName(1910),
-             "1910 => name was changed in 1910 v2");
+             "1910 => The surname has been changed in 1910 to surname-1911");
+   
     AssertEq("surname-1911 with unknown first name",p.GetFullName(1911),
-             "1911 => surname was changed in 1911");
+             "1911 => The surname has been changed in 1910 to surname-1911");
+    
     AssertEq("surname-1911 with unknown first name",p.GetFullName(1912),
-             "1912 => surname was changed in 1911");
+             "1912 => The surname has been changed in 1910 to surname-1911");
     
 }
 
