@@ -1,3 +1,5 @@
+
+  
 //
 //  collection_helper.hpp
 //  u-tests
@@ -70,3 +72,4 @@ std::ostream& operator << ( std::ostream& os, const std::vector<V>& s )
     }
     return os << "]";
 }
+
