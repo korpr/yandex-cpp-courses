@@ -13,6 +13,7 @@
 #include <ostream>
 
 
+
 template < class K, class V >
 std::ostream& operator<< ( std::ostream& os, const std::pair<K, V>& p )
 {
