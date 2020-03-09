@@ -11,6 +11,16 @@
 #include <exception>
 #include "collection_helper.hpp"
 
+
+template<typename EXPECTED, typename ACTUAL>
+void AssertEqual ( const EXPECTED& ex, const ACTUAL& act, const std::string& msg )
+{
+    if ( ex != act ) {
+        std::ostringstream os;
+        os << ex << " != " << act << " msg: " << msg;
+        throw std::runtime_error ( os.str() );
+    }
+}
 template<typename EXPECTED, typename ACTUAL>
 void AssertEq ( const EXPECTED& ex, const ACTUAL& act, const std::string& msg )
 {
@@ -22,3 +32,4 @@ void AssertEq ( const EXPECTED& ex, const ACTUAL& act, const std::string& msg )
 }
 
 void AssertTrue ( const bool actual, const std::string& msg );
+void Assert ( const bool actual, const std::string& msg );

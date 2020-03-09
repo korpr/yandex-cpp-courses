@@ -13,3 +13,7 @@ void AssertTrue ( const bool actual, const std::string& msg )
     AssertEq ( true, actual, msg );
 }
 
+void Assert ( const bool actual, const std::string& msg )
+{
+    AssertEq ( true, actual, msg );
+}
