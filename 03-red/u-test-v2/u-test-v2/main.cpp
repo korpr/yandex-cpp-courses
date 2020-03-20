@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "test_runner.h"
-#include "profiler.hpp"
+#include "profiler.h"
 void AssertEqTest()
 {
     AssertEqual ( 1, 1, "1 == 1" );
