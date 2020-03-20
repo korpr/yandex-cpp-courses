@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "test_runner.h"
-
+#include "profiler.hpp"
 void AssertEqTest()
 {
     AssertEqual ( 1, 1, "1 == 1" );
@@ -24,6 +24,7 @@ void AssertTrueTest()
 
 void AssertSetTest()
 {
+    
     std::set<int> expected = {1,2};
     std::set<int> another = {1,2,3};
     AssertEqual ( expected, expected,"set  eq" );
@@ -32,7 +33,9 @@ void AssertSetTest()
 }
 int main ( int argc, char **argv )
 {
-    
+    {
+        LOG_DURATION("LOG")
+    }
     {
         TestRunner runner;
         runner.RunTest ( AssertEqTest, "AssertEqTest" );
