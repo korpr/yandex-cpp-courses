@@ -6,72 +6,73 @@
 #include <string>
 #include <set>
 #include "test_runner.h"
-#include "profiler.h"
+//#include "profiler.h"
 
 using namespace std;
 
 class RouteManager {
 public:
     void AddRoute(int start, int finish) {
-        reachable_lists_[start].push_back(finish);
-        reachable_lists_[finish].push_back(start);
+        reachable_lists_[start].insert(finish);
+        reachable_lists_[finish].insert(start);
     }
     int FindNearestFinish(int start, int finish) const {
-        int result = abs(start - finish); //O(1)
-        if (reachable_lists_.count(start) < 1) { //O(Log(SIZE))
+        
+        int result = abs(start - finish);
+        if (reachable_lists_.count(start) < 1) {
             return result;
         }
-        
-        for(const auto& s:reachable_lists_.at(start)){
-            int d  = abs(s - finish);
-            if (d < result){
-                result = d;
-            }
-            if (!result){
-                break;
-            }
+        const set<int>& reachable_stations = reachable_lists_.at(start);
+        const auto target = reachable_stations.lower_bound(finish);
+        if (target != end(reachable_stations)) {
+            result = min(result, abs(finish - *target));
         }
+        if (target != begin(reachable_stations)) {
+            result = min(result, abs(finish - *prev(target)));
+        }
+        return result;
         
         return result;
     }
 private:
-    map<int, vector<int>> reachable_lists_;
+    map<int, set<int>> reachable_lists_;
 };
-void TestSolution(){
-    RouteManager rm;
-    rm.AddRoute( -2 ,5);
-    rm.AddRoute( 10, 4);
-    rm.AddRoute( 5, 8);
-    ASSERT_EQUAL(0,rm.FindNearestFinish( 4, 10));
-    ASSERT_EQUAL(6,rm.FindNearestFinish( 4, -2));
-    ASSERT_EQUAL(2,rm.FindNearestFinish( 5, 0));
-    ASSERT_EQUAL(2,rm.FindNearestFinish( 5, -4));
-    ASSERT_EQUAL(0,rm.FindNearestFinish( 5, -2));
-    ASSERT_EQUAL(92,rm.FindNearestFinish( 5, 100));
-}
-void TestPerform(){
-    RouteManager rm;
-    {
-        LOG_DURATION("INSERT")
-        for (size_t idx = 0;idx < 100000;++idx){
-            rm.AddRoute(rand() % 10000, rand() % 10000);
-        }
-    }
-    {
-        LOG_DURATION("FULL")
-        for (size_t idx = 0;idx < 10000;++idx){
-            {
-                //LOG_DURATION("ITERATION")
-                rm.FindNearestFinish(rand() % 100000, rand() % 100000);
-            }
-        }
-    }
-}
-
+/*
+ void TestSolution(){
+ RouteManager rm;
+ rm.AddRoute( -2 ,5);
+ rm.AddRoute( 10, 4);
+ rm.AddRoute( 5, 8);
+ ASSERT_EQUAL(0,rm.FindNearestFinish( 4, 10));
+ ASSERT_EQUAL(6,rm.FindNearestFinish( 4, -2));
+ ASSERT_EQUAL(2,rm.FindNearestFinish( 5, 0));
+ ASSERT_EQUAL(2,rm.FindNearestFinish( 5, -4));
+ ASSERT_EQUAL(0,rm.FindNearestFinish( 5, -2));
+ ASSERT_EQUAL(92,rm.FindNearestFinish( 5, 100));
+ }
+ void TestPerform(){
+ RouteManager rm;
+ {
+ LOG_DURATION("INSERT")
+ for (size_t idx = 0;idx < 100'000;++idx){
+ rm.AddRoute(1000000000 - rand() % 2000000000, 1000000000 - rand() % 2000000000);
+ }
+ }
+ {
+ LOG_DURATION("FULL")
+ for (size_t idx = 0;idx < 100'000;++idx){
+ {
+ //LOG_DURATION("ITERATION")
+ rm.FindNearestFinish(1000000000 - rand() % 2000000000, 1000000000 - rand() % 2000000000);
+ }
+ }
+ }
+ }
+ */
 int main() {
-    TestRunner tr;
-    RUN_TEST(tr, TestSolution);
-    RUN_TEST(tr, TestPerform);
+    // TestRunner tr;
+    // RUN_TEST(tr, TestSolution);
+    // RUN_TEST(tr, TestPerform);
     RouteManager routes;
     
     int query_count;
